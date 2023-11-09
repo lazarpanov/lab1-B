@@ -13,6 +13,9 @@
     <ul>
         <li th:each="author : ${book.getAuthors()}" th:text="${author.getName()}"></li>
     </ul>
+    <form th:method="POST" th:action="@{/deleteAuthors}">
+        <input type="submit" value="Delete All Authors">
+    </form>
 </section>
 
 </body>

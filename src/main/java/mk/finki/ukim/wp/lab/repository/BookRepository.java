@@ -33,4 +33,8 @@ public class BookRepository {
         book.getAuthors().add(author);
         return author;
     }
+
+    public void deleteAllAuthors(Book book) {
+        findByIsbn(book.getIsbn()).setAuthors(new ArrayList<>());
+    }
 }
