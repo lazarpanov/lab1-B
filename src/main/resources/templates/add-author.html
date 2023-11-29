@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add-product</title>
+</head>
+<body>
+<form th:action="@{'/author/edit/{id}' (id=${author.getId()})}" th:method="post">
+<!--<form action="/author/edit/" method="post">-->
+    <label for="name">Author name</label>
+    <input type="text" id="name" name="name" th:value="(${author} != null ? ${author.getName()} : '' )" required placeholder="Enter name">
+
+    <label for="surname">Author surname</label>
+    <input type="text" id="surname" name="surname" th:value="(${author} != null ? ${author.getSurname()} : '' )" required placeholder="Enter surname">
+
+    <label for="biography">Author biography</label>
+    <input type="text" id="biography" name="biography" th:value="(${author} != null ? ${author.getBiography()} : '' )" required placeholder="Enter biography">
+
+    <!--    <input type="hidden" th:value="${book.getId()}" name="bookId" />-->
+    <button type="submit">Submit</button>
+    <a type="button" href="/author">Back</a>
+</form>
+
+</body>
+</html>

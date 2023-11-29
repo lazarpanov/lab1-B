@@ -15,7 +15,7 @@ import org.thymeleaf.web.servlet.JakartaServletWebApplication;
 
 import java.io.IOException;
 
-@WebServlet(name = "book-details-servlet", urlPatterns = "/bookDetails")
+@WebServlet(name = "book-details-servlet", urlPatterns = "/noo")
 public class BookDetailsServlet extends HttpServlet {
     private final AuthorService authorService;
     private final BookService bookService;
@@ -32,9 +32,6 @@ public class BookDetailsServlet extends HttpServlet {
         IWebExchange webExchange = JakartaServletWebApplication.buildApplication(getServletContext()).buildExchange(req, resp);
         WebContext context = new WebContext(webExchange);
         String isbn = req.getParameter("isbn");
-//        String authId = req.getParameter("authId");
-//        context.setVariable("isbn", isbn);
-//        context.setVariable("authId", authId);
         Book book = bookService.findBookByIsbn(isbn);
         context.setVariable("book", book);
         springTemplateEngine.process("bookDetails.html", context, resp.getWriter());

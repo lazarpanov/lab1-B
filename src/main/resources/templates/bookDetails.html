@@ -13,7 +13,8 @@
     <ul>
         <li th:each="author : ${book.getAuthors()}" th:text="${author.getName()}"></li>
     </ul>
-    <form th:method="POST" th:action="@{/deleteAuthors}">
+    <form th:method="GET" action="/author/delete">
+        <input type="hidden" th:value="${book.getIsbn()}" name="isbn" />
         <input type="submit" value="Delete All Authors">
     </form>
 </section>

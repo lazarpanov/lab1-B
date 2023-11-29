@@ -15,12 +15,21 @@
 </header>
 <main>
     <h2>Choose book:</h2>
-    <form th:method="POST" th:action="@{/listBooks}">
+    <form th:method="POST" action="/books">
         <ul>
-            <li th:each="book : ${books}"><input type="radio" name="book" th:value="${book.getIsbn()}" th:text="'Title: ' + ${book.getTitle()} + ', Genre: ' + ${book.getGenre()} + ', Year: ' + ${book.getYear()}"></li>
+            <li th:each="book : ${books}"><input type="radio" name="book" th:value="${book.getIsbn()}" th:text="'Title: ' + ${book.getTitle()} + ', Genre: ' + ${book.getGenre()} + ', Year: ' + ${book.getYear()} + ', Book Store: ' + ${book.getBookStore().getName()}">
+<!--                <form th:method="delete" th:action="@{'/books/delete/{id}' (id=${book.getId()})}">-->
+<!--                    <button type="submit">Delete</button>-->
+<!--                </form>-->
+                <a th:href="@{'/books/delete/{id}' (id=${book.getId()})}" th:method="get" >Delete</a>
+                <a th:href="@{'/books/edit-form/{id}' (id=${book.getId()})}">Edit</a>
+            </li>
         </ul>
         <input type="submit" value="Submit">
     </form>
+    <div>
+        <a href="/books/add-form">Add new book</a>
+    </div>
     <!-- Display radio buttons for each book,
             the value should be the isbn
             and the displayed text should be Title: <bookTitle>, Genre:<genre>, Year: <year> -->

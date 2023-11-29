@@ -32,10 +32,12 @@
 </header>
 <section>
     <h2>Select author:</h2>
-    <form th:method="POST" th:action="@{/author}">
-        <li th:each="author : ${authors}"><input type="radio" name="authId" th:value="${author.getId()}" th:text="${author.getName()} + ' ' + ${author.getSurname()}"></li>
+    <form th:method="POST" action="/author">
+        <li th:each="author : ${authors}"><input type="radio" name="authId" th:value="${author.getId()}" th:text="${author.getName()} + ' ' + ${author.getSurname()} +' ' +${author.getBiography()} ">
+            <a th:href="@{'/author/deleteone/{id}' (id=${author.getId()})}" th:method="get" >Delete</a>
+            <a th:href="@{'/author/edit-form/{id}' (id=${author.getId()})}">Edit</a></li>
         <input type='submit' value='Add author'>
-    </form >
+    </form>
     <!-- Make changes to this code to dynamically display radio buttons for each author as in the example -->
 
     <br/>
