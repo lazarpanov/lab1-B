@@ -35,11 +35,10 @@ public class BookController {
 
     @PostMapping
     public String postBooksPage(@RequestParam String book) {
-//        return "redirect:/author?isbn=" + book;
         return "redirect:/author?isbn=" + book;
     }
 
-    @PostMapping("/add")
+    @GetMapping("/add")
     public String saveBook(@RequestParam String title,
                            @RequestParam String isbn,
                            @RequestParam String genre,
@@ -57,13 +56,14 @@ public class BookController {
                            @RequestParam String genre,
                            @RequestParam Integer year,
                            @RequestParam Long bookStore) {
+        if (bookId == -1) {
+            return String.format("redirect:/books/add?title=%s&isbn=%s&genre=%s&year=%d&bookStore=%s", title, isbn, genre, year, bookStore);
+        }
         Book book = bookService.findById(bookId);
         book.setTitle(title);
         book.setIsbn(isbn);
         book.setGenre(genre);
         book.setYear(year);
-        List<BookStore> bss = bookStoreService.findAll();
-        BookStore bs = bookStoreService.findById(bookStore);
         book.setBookStore(bookStoreService.findById(bookStore));
 
         return "redirect:/books";
@@ -71,6 +71,11 @@ public class BookController {
 
     @GetMapping("/edit-form/{id}")
     public String getEditBookForm(@PathVariable Long id, Model model) {
+        if (id == -1) {
+            List<BookStore> bookStores = this.bookStoreService.findAll();
+            model.addAttribute("bookstores", bookStores);
+            return "add-book";
+        }
         if (this.bookService.findById(id) != null) {
             Book book = this.bookService.findById(id);
             List<BookStore> bookStores = this.bookStoreService.findAll();
@@ -79,6 +84,7 @@ public class BookController {
 
             return "add-book";
         }
+
         return "redirect:/books?error=ProductNotFound";
     }
 
@@ -100,7 +106,6 @@ public class BookController {
     public String details(@RequestParam String isbn, @RequestParam(required = false) String authId, Model model) {
         Book book = bookService.findBookByIsbn(isbn);
         model.addAttribute("book", book);
-//        springTemplateEngine.process("bookDetails.html", context, resp.getWriter());
         return "bookDetails";
     }
 }

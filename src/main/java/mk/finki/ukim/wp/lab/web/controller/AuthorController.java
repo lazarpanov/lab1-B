@@ -28,13 +28,6 @@ public class AuthorController {
 
     @GetMapping
     public String authorGet(@RequestParam(value = "isbn", required = false) String isbn, Model model) {
-//        IWebExchange webExchange = JakartaServletWebApplication.buildApplication(getServletContext()).buildExchange(req, resp);
-//        WebContext context = new WebContext(webExchange);
-//        context.setVariable("authors", authorService.listAuthors());
-//        String isbn = req.getParameter("isbn");
-//        req.getSession().setAttribute("isbn", isbn);
-//        context.setVariable("isbn", isbn);
-//        springTemplateEngine.process("authorsList.html", context, resp.getWriter());
         model.addAttribute("authors", authorService.listAuthors());
         model.addAttribute("isbn", isbn);
 
@@ -43,14 +36,9 @@ public class AuthorController {
 
     @PostMapping
     public String authorPost(@RequestParam("authId") String authId, @RequestParam("isbn") String isbn) {
-//        String authId = req.getParameter("authId");
-//        String isbn = req.getSession().getAttribute("isbn").toString();
-
-//        String isbn = model.getAttribute("isbn").toString();
         bookService.addAuthorToBook(Long.parseLong(authId), isbn);
         System.out.println(authId);
         System.out.println(isbn);
-//        return "redirect:/bookDetails?isbn=";
         return "redirect:/books/details?isbn=" + isbn + "&authId=" + authId;
     }
 

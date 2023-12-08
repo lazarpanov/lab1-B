@@ -28,7 +28,8 @@
         <input type="submit" value="Submit">
     </form>
     <div>
-        <a href="/books/add-form">Add new book</a>
+<!--        <a href="/books/add-form">Add new book</a>-->
+        <a th:href="@{'/books/edit-form/{id}' (id=-1)}">Add new book</a>
     </div>
     <!-- Display radio buttons for each book,
             the value should be the isbn

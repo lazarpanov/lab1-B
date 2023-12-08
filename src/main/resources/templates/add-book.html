@@ -5,8 +5,8 @@
     <title>Add-product</title>
 </head>
 <body>
-<!--<form th:action="@{'/books/edit/{bookId}' (bookId=${book.getId()})}" method="post">-->
-<form action="/books/add" method="post">
+<form th:action="@{'/books/edit/{bookId}' (bookId = ${book != null ? book.getId() : -1}) }" method="post">
+<!--<form action="/books/add" method="post">-->
     <label for="title">Product name</label>
     <input type="text" id="title" name="title" th:value="(${book} != null ? ${book.getTitle()} : '' )" required placeholder="Enter title">
 
