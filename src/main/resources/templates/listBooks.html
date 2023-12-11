@@ -23,6 +23,7 @@
 <!--                </form>-->
                 <a th:href="@{'/books/delete/{id}' (id=${book.getId()})}" th:method="get" >Delete</a>
                 <a th:href="@{'/books/edit-form/{id}' (id=${book.getId()})}">Edit</a>
+                <a th:href="@{'/books/review/{id}' (id=${book.getId()})}">View reviews</a>
             </li>
         </ul>
         <input type="submit" value="Submit">

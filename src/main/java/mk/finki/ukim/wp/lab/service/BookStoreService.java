@@ -7,4 +7,6 @@ import java.util.List;
 public interface BookStoreService {
     public List<BookStore> findAll();
     public BookStore findById(Long id);
+    public BookStore findByName(String name);
+    void transferInMemoryToDataBase();
 }

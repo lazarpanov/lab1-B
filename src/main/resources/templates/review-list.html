@@ -1,0 +1,24 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h3 th:text="${book.getTitle()}">
+    Reviews for book:
+</h3>
+<ul>
+<!--    <li th:each="review : ${reviews}" th:text="${review.getDescription()} + ' ' ${review.getScore() + ' ' + review.getTimestamp()}" ></li>-->
+    <li th:each="review : ${reviews}" th:text="${'Description ' + review.getDescription() + ' Score: ' + review.getScore() + ' Timestamp: ' + review.getTimestamp()}" ></li>
+</ul>
+<form action="/books/filter-reviews" th:method="post">
+    <input type="hidden" th:value="${book.getId()}" th:name="id">
+    <h4>
+        Search books from: <input type="datetime-local" id="from" name="from"/> to: <input type="datetime-local" id="to" name="to"/>
+    </h4>
+    <input type="submit" value="Search">
+</form>
+
+</body>
+</html>

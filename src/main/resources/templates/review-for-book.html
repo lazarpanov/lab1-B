@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--<form action="/books/review" th:method="post">-->
+<!--    <div>-->
+<!--        <label>Book</label>-->
+<!--        <select name="book">-->
+<!--            <option th:each="book : ${books}" th:text="${book.getTitle()()}" th:value="${book.getId()}">-->
+<!--            </option>-->
+<!--        </select>-->
+<!--    </div>-->
+<!--    <input type="text" id="score" name="score">-->
+<!--    <input type="text" id="description" name="description">-->
+<!--    &lt;!&ndash;    <input type="hidden" th:value="${book.getId()}" name="bookId" />&ndash;&gt;-->
+<!--    <input type="datetime-local" id="stamp" name="stamp"/>-->
+<!--    <button type="submit">Submit</button>-->
+<!--    <a type="button" href="/books">Back</a>-->
+<!--</form>-->
+<form th:method="POST" action="/books/review">
+    <select name="id">
+        <option th:each="book : ${books}" th:value="${book.getId()}" th:text="${book.getTitle()}">
+    </select>
+        <input type="text" id="score" name="score">
+        <input type="text" id="description" name="description">
+        <input type="datetime-local" id="stamp" name="stamp"/>
+    <input type="submit" value="Submit">
+</form>
+</body>
+</html>

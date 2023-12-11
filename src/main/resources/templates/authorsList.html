@@ -36,6 +36,7 @@
         <li th:each="author : ${authors}"><input type="radio" name="authId" th:value="${author.getId()}" th:text="${author.getName()} + ' ' + ${author.getSurname()} +' ' +${author.getBiography()} ">
             <a th:href="@{'/author/deleteone/{id}' (id=${author.getId()})}" th:method="get" >Delete</a>
             <a th:href="@{'/author/edit-form/{id}' (id=${author.getId()})}">Edit</a></li>
+        <input type="hidden" name="isbn" th:value="${isbn}">
         <input type='submit' value='Add author'>
     </form>
     <!-- Make changes to this code to dynamically display radio buttons for each author as in the example -->

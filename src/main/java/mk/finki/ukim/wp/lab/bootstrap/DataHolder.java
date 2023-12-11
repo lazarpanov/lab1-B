@@ -7,6 +7,7 @@ import mk.finki.ukim.wp.lab.model.Book;
 import mk.finki.ukim.wp.lab.model.BookStore;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,11 +20,11 @@ public class DataHolder {
     @PostConstruct
     public void init() {
         authors = new ArrayList<>();
-        authors.add(new Author(1L, "John", "Doe", "John Doe is a talented writer with a passion for storytelling."));
-        authors.add(new Author(2L, "Jane", "Smith", "Jane Smith is an accomplished author known for her best-selling novels."));
-        authors.add(new Author(3L, "Robert", "Johnson", "Robert Johnson's writing style captivates readers with its unique blend of humor and drama."));
-        authors.add(new Author(4L, "Maria", "Garcia", "Maria Garcia is a renowned author whose novels have been translated into multiple languages."));
-        authors.add(new Author(5L, "Michael", "Brown", "Michael Brown is an emerging writer with a fresh perspective on contemporary issues."));
+        authors.add(new Author("John", "Doe", "John Doe is a talented writer with a passion for storytelling.", LocalDate.of(1970, 1, 20)));
+        authors.add(new Author("Jane", "Smith", "Jane Smith is an accomplished author known for her best-selling novels.",LocalDate.of(1972, 1, 20)));
+        authors.add(new Author("Robert", "Johnson", "Robert Johnson's writing style captivates readers with its unique blend of humor and drama.", LocalDate.of(1974, 1, 20)));
+        authors.add(new Author("Maria", "Garcia", "Maria Garcia is a renowned author whose novels have been translated into multiple languages.", LocalDate.of(1976, 1, 20)));
+        authors.add(new Author("Michael", "Brown", "Michael Brown is an emerging writer with a fresh perspective on contemporary issues.", LocalDate.of(1978, 1, 20)));
         bookStores = new ArrayList<>();
         BookStore bookStore1 = new BookStore("Book Haven", "New York", "123 Main St");
         BookStore bookStore2 = new BookStore("City Books", "Los Angeles", "456 Oak Ave");
